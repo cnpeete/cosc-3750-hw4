@@ -15,7 +15,10 @@ This is a simple version of the cat utility
 
 int main(int argc, char **argv)
 {
+  FILE *file;
+
   char buffer[BUFFER_SIZE];
+
   size_t size = 1;
   size_t numElements = 1;
   int count = 1;
@@ -40,7 +43,19 @@ int main(int argc, char **argv)
       }
       else
       {
-        printf("The input was: %s\n", argv[count]);
+        file = fopen(argv[count], "r");
+        if (!file)
+        {
+          printf("Error: File not found!\n");
+        }
+        else
+        {
+          while(fread(buffer, size, numElements, file) > 0)
+          {
+            fwrite(buffer, size, numElements, stdout);
+            fclose(file);
+          }
+        }
       }
       count++;
     }
