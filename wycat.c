@@ -20,7 +20,6 @@ int main(int argc, char **argv)
   char buffer[BUFFER_SIZE];
 
   size_t size = 1;
-  //size_t numElements = 1;
   int count = 1;
 
   if (argc == 1)
@@ -46,7 +45,7 @@ int main(int argc, char **argv)
         file = fopen(argv[count], "r");
         if (file == NULL)
         {
-          printf("Error: File not found!\n");
+          perror("Error: File not found!\n");
         }
         else
         {

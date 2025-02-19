@@ -1,0 +1,33 @@
+/*
+hw4_pcode.tt
+Author: Cameron Peete
+Date: February 19, 2025
+
+COSC 3750, Homework 4 Pseudocode
+
+This file contains pseudocode for Homework 4
+*/
+
+Declare a buffer of size 4096
+
+inside main:
+
+Declare int count = 1
+Declare size_t size = 1
+
+if (argc == 1) //no arguments supplied
+  while size > 0, set size = fread of stdin
+   use fwrite to write to stdout
+
+else
+  while (count < argc): 
+    if strcmp of argv[count] to "-" = 0
+      repeat the steps above for if no arguments were supplied
+    else
+      open file using fopen
+      if the file does not exist
+        print an error message
+      else
+        use fread to read the contens into a buffer
+        use fwrite to write the buffer's contents to stdout
+   
