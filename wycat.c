@@ -20,14 +20,14 @@ int main(int argc, char **argv)
   char buffer[BUFFER_SIZE];
 
   size_t size = 1;
-  size_t numElements = 1;
+  //size_t numElements = 1;
   int count = 1;
 
   if (argc == 1)
   {
-    while (fread(buffer, size, numElements, stdin) > 0)
+    while ((size = fread(buffer, 1, BUFFER_SIZE, stdin)) > 0)
     {
-      fwrite(buffer, size, numElements, stdout);
+      fwrite(buffer, 1, size, stdout);
     }
   }
   else
@@ -36,25 +36,25 @@ int main(int argc, char **argv)
     {
       if (strcmp(argv[count], "-") == 0)
       {
-        while (fread(buffer, size, numElements, stdin) > 0)
+        while ((size = fread(buffer, 1, BUFFER_SIZE, stdin)) > 0)
         {
-          fwrite(buffer, size, numElements, stdout);
+          fwrite(buffer, 1, size, stdout);
         }
       }
       else
       {
         file = fopen(argv[count], "r");
-        if (!file)
+        if (file == NULL)
         {
           printf("Error: File not found!\n");
         }
         else
         {
-          while(fread(buffer, size, numElements, file) > 0)
+          while((size = fread(buffer, 1, BUFFER_SIZE, file)) > 0)
           {
-            fwrite(buffer, size, numElements, stdout);
-            fclose(file);
+            fwrite(buffer, 1, size, stdout);
           }
+          fclose(file);
         }
       }
       count++;
