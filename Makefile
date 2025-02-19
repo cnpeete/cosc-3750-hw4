@@ -9,5 +9,11 @@
 CC=gcc
 CFLAGS=-Wall -ggdb -I.
 
+.PHONY: wycat clean
+
 wycat: wycat.c
 	$(CC) $(CFLAGS) wycat.c -o wycat
+
+clean:
+	/bin/rm -f wycat
+	/bin/rm -f *.core
